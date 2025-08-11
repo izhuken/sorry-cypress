@@ -111,7 +111,7 @@ export const resolvers = {
       { cursor, filters }: Parameters<RunsAPI['getRunFeed']>[0],
       { dataSources }: { dataSources: AppDatasources }
     ) => dataSources.runsAPI.getRunFeed({ cursor: cursor || false, filters }),
-    run: async (
+    run: (
       _: any,
       { id }: { id: string },
       { dataSources }: { dataSources: AppDatasources }

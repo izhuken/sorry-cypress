@@ -57,7 +57,7 @@ export interface RunSpec {
   groupId: string;
   instanceId: string;
   claimedAt: string | null;
-  completedAt: string | null;
+  completedAt: Date | null;
   machineId?: string;
   results?: {
     error?: string;

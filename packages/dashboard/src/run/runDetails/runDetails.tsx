@@ -150,6 +150,7 @@ function convertToRows(
       return {
         instanceId: spec.instanceId,
         claimedAt: spec.claimedAt,
+        completedAt: spec.completedAt,
         status: getInstanceState({
           claimedAt: spec.claimedAt,
           stats: spec.results?.stats,
@@ -234,8 +235,23 @@ const getDurationCell = (params: GridRenderCellParams) => {
       </Tooltip>
     );
   }
+
   if (!params.row.claimedAt) {
     return null;
+  }
+
+  if (params.row.completedAt && params.row.claimedAt) {
+    const duration =
+      differenceInSeconds(
+        parseISO(params.row.completedAt),
+        parseISO(params.row.claimedAt)
+      ) * 1000;
+
+    return (
+      <Tooltip title={`Started at ${params.row.startedAt}`}>
+        <span>{getDurationMs(duration)}</span>
+      </Tooltip>
+    );
   }
 
   return (

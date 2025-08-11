@@ -71,7 +71,7 @@ export const start = async function start(
   });
 
   console.log(
-    `🚀 Apollo server is ready at ${getAddress(httpServer)}${basePath}}`
+    `🚀 Apollo server is ready at ${getAddress(httpServer)}${basePath}`
   );
   return { httpServer, apolloServer };
 };

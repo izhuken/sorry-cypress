@@ -8,9 +8,6 @@ version: '3.6'
 services:
   mongo:
     image: mongo:4.4
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: '<mongo-user>'
-      MONGO_INITDB_ROOT_PASSWORD: '<mongo-pass>'
     volumes:
       - ./data/data-mongo-cypress:/data/db
     ports:
@@ -23,7 +20,6 @@ services:
       EXECUTION_DRIVER: '../execution/mongo/driver'
       MONGODB_URI: 'mongodb://<mongo-user>:<mongo-pass>@mongo:27017'
       MONGODB_DATABASE: 'sorry-cypress'
-
       SCREENSHOTS_DRIVER: '../screenshots/minio.driver'
       GITLAB_JOB_RETRIES: 'false'
       MINIO_ACCESS_KEY: '<minio-user>'

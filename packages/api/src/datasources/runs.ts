@@ -120,7 +120,19 @@ export class RunsAPI extends DataSource {
   }
 
   getRunById(id: string) {
-    return Collection.run().findOne({ runId: id });
+    return Collection.run()
+      .findOne({ runId: id })
+      .then((result) =>
+        !result
+          ? null
+          : {
+              ...result,
+              specs: result.specs.map((item) => ({
+                ...item,
+                completedAt: item.completedAt?.toISOString(),
+              })),
+            }
+      );
   }
 
   async deleteRunsByIds(runIds: string[]) {

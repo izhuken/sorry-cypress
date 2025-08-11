@@ -2,6 +2,7 @@ fragment RunDetailSpec on RunSpec {
   instanceId
   spec
   claimedAt
+  completedAt
   machineId
   groupId
   results {
