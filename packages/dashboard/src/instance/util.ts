@@ -3,7 +3,7 @@ import { orderBy, sum } from 'lodash';
 
 export const getTestDuration = (test: InstanceTest) => {
   return (
-    sum(test.attempts.map((a) => a.wallClockDuration)) ?? test.duration ?? 0
+    sum(test.attempts.map((a) => a.wallClockDuration)) ?? test?.duration ?? 0
   );
 };
 
