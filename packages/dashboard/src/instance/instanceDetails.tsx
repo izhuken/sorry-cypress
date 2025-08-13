@@ -385,6 +385,7 @@ function getTreeOfNavigationItems(instance: GetInstanceQuery['instance']) {
   const specStartedAt = instance?.results?.stats.wallClockStartedAt
     ? new Date(instance?.results?.stats.wallClockStartedAt)
     : null;
+
   tests.forEach((test, testIndex) => {
     let currentMap = navigationTree;
     test.title.forEach((title, titleIndex) => {
@@ -396,7 +397,7 @@ function getTreeOfNavigationItems(instance: GetInstanceQuery['instance']) {
         const passedOrFirstAttempt = test.attempts.find(
           (attempt) => attempt.state === 'passed'
         );
-        test.attempts[0];
+
         const testStartedAt = passedOrFirstAttempt?.wallClockStartedAt
           ? new Date(passedOrFirstAttempt.wallClockStartedAt)
           : null;

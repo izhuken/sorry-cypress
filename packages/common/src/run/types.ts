@@ -1,4 +1,4 @@
-import { InstanceResultStats } from '../instance/types';
+import { InstanceResultStats, ReporterStats } from '../instance/types';
 
 export interface CommitData {
   sha: string;
@@ -62,6 +62,7 @@ export interface RunSpec {
   results?: {
     error?: string;
     stats: InstanceResultStats;
+    reporterStats: ReporterStats;
   };
 }
 

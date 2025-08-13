@@ -20,6 +20,7 @@ import { getBase } from '@sorry-cypress/dashboard/lib/path';
 import {
   getDurationMs,
   getDurationSeconds,
+  getHumanReadableDate,
 } from '@sorry-cypress/dashboard/lib/time';
 import { ResetInstanceButton } from '@sorry-cypress/dashboard/run/runDetails/resetInstance/resetInstanceButton';
 import { differenceInSeconds, parseISO } from 'date-fns';
@@ -228,30 +229,25 @@ const getSpecNameCell = (params: GridRenderCellParams) => (
 );
 
 const getDurationCell = (params: GridRenderCellParams) => {
-  if (isNumber(params.row.duration)) {
+  if (
+    isNumber(params.row.duration) ||
+    isNumber(params.row?.results?.reporterStats.duration)
+  ) {
+    const startedAt = getHumanReadableDate(
+      params.row.startedAt ?? params.row?.results?.reporterStats.start
+    );
+    const duration =
+      params.row.duration ?? params.row?.results?.reporterStats.duration ?? 0;
+
     return (
-      <Tooltip title={`Started at ${params.row.startedAt}`}>
-        <span>{getDurationMs(params.row.duration ?? 0)}</span>
+      <Tooltip title={`Started at ${startedAt}`}>
+        <span>{getDurationMs(duration)}</span>
       </Tooltip>
     );
   }
 
   if (!params.row.claimedAt) {
     return null;
-  }
-
-  if (params.row.completedAt && params.row.claimedAt) {
-    const duration =
-      differenceInSeconds(
-        parseISO(params.row.completedAt),
-        parseISO(params.row.claimedAt)
-      ) * 1000;
-
-    return (
-      <Tooltip title={`Started at ${params.row.startedAt}`}>
-        <span>{getDurationMs(duration)}</span>
-      </Tooltip>
-    );
   }
 
   return (

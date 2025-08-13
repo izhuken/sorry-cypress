@@ -2,7 +2,9 @@ import { InstanceTest } from '@sorry-cypress/dashboard/generated/graphql';
 import { orderBy, sum } from 'lodash';
 
 export const getTestDuration = (test: InstanceTest) => {
-  return sum(test.attempts.map((a) => a.wallClockDuration)) ?? 0;
+  return (
+    sum(test.attempts.map((a) => a.wallClockDuration)) ?? test.duration ?? 0
+  );
 };
 
 export const getTestStartedAt = (test: InstanceTest) => {

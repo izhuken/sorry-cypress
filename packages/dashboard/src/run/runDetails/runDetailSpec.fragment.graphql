@@ -11,5 +11,15 @@ fragment RunDetailSpec on RunSpec {
     stats {
       ...AllInstanceStats
     }
+    reporterStats {
+      suites
+      tests
+      passes
+      pending
+      failures
+      start
+      end
+      duration
+    }
   }
 }

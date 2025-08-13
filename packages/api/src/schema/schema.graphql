@@ -114,6 +114,7 @@ type RunSpecResults {
   error: String
   flaky: Int
   stats: InstanceStats!
+  reporterStats: ReporterStats
 }
 
 type RunProgress {
@@ -248,6 +249,7 @@ type InstanceTest {
   body: String
   displayError: String
   attempts: [TestAttempt!]!
+  duration: Int
 }
 
 type TestError {

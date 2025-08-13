@@ -4,13 +4,8 @@ import { findIndex } from 'lodash';
 import { RunSpec } from '../generated/graphql';
 
 export class InstancesAPI extends DataSource {
-  async getInstanceById(instanceId: string) {
-    const result = await Collection.instance().findOne({ instanceId });
-    result?.results?.tests?.forEach((a) => {
-      console.log(a);
-      console.log(a.attempts);
-    });
-    return result;
+  getInstanceById(instanceId: string) {
+    return Collection.instance().findOne({ instanceId });
   }
 
   getResultsByInstanceId(instanceId: string) {

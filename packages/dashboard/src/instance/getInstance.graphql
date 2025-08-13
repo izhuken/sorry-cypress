@@ -17,6 +17,7 @@ query getInstance($instanceId: ID!) {
       }
       tests {
         ...GetInstanceTest
+        duration
       }
       screenshots {
         testId

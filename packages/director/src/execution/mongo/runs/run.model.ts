@@ -222,6 +222,7 @@ export const setSpecCompleted = async (
       $set: {
         'specs.$[spec].results': {
           ...pick(instanceResult, 'stats', 'error'),
+          reporterStats: instanceResult.reporterStats,
           flaky: flakyTests.length,
         },
       },
