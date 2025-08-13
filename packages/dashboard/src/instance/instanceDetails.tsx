@@ -21,6 +21,7 @@ import { isTestFlaky } from '@sorry-cypress/common';
 import {
   GetInstanceQuery,
   GetInstanceTestFragment,
+  InstanceTest,
 } from '@sorry-cypress/dashboard/generated/graphql';
 import { getDurationMs } from '@sorry-cypress/dashboard/lib/time';
 import { TestError } from '@sorry-cypress/dashboard/testItem/details/common';
@@ -206,9 +207,15 @@ export const InstanceDetails: InstanceDetailsComponent = (props) => {
                 <Typography variant="caption" color="inherit">
                   {entry.test && (
                     <Tooltip
-                      title={`Started at ${getTestStartedAt(entry.test)}`}
+                      title={`Started at ${getTestStartedAt(
+                        entry.test as InstanceTest
+                      )}`}
                     >
-                      <span>{getDurationMs(getTestDuration(entry.test))}</span>
+                      <span>
+                        {getDurationMs(
+                          getTestDuration(entry.test as InstanceTest)
+                        )}
+                      </span>
                     </Tooltip>
                   )}
                 </Typography>

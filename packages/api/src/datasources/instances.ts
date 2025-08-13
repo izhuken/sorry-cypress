@@ -53,7 +53,7 @@ export class InstancesAPI extends DataSource {
     let runSpec: RunSpec | null;
     run.specs = run.specs.map((spec) => {
       if (spec.instanceId === instanceId) {
-        runSpec = spec;
+        runSpec = spec as RunSpec;
         return {
           ...spec,
           claimedAt: null,
